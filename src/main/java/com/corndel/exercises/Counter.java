@@ -1,7 +1,7 @@
 package com.corndel.exercises;
 
 public class Counter {
-  int count;
+  private int count;
 
   public Counter() {
     this.count = 0;
