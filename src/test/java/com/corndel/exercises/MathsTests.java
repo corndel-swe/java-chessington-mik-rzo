@@ -13,4 +13,19 @@ public class MathsTests {
   public void maxReturnsLargestOfTwoNumbers() {
     assertEquals(8, Maths.max(5, 8));
   }
+
+  @Test
+  public void roundReturnsSameNumberGivenInteger() {
+    assertEquals(5, Maths.round(5));
+  }
+
+  @Test
+  public void roundReturnsNumberRoundedDown() {
+    assertEquals(8, Maths.round(8.2));
+  }
+
+  @Test
+  public void roundReturnsNumberRoundedUp() {
+    assertEquals(10, Maths.round(9.6));
+  }
 }

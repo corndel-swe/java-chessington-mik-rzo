@@ -6,4 +6,9 @@ public class Maths {
   public static double max(double a, double b) {
     return a > b ? a : b;
   }
+
+  public static int round(double n) {
+    double decimal = n - (int) n;
+    return decimal >= 0.5 ? (int) n + 1 : (int) n;
+  }
 }
