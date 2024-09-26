@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.corndel.chessington.model.Board;
@@ -23,7 +22,6 @@ public class BishopTest {
     board = Board.empty();
   }
 
-  @Disabled
   @Test
   public void bishopCanMoveDiagonally() {
     // Arrange
@@ -51,7 +49,6 @@ public class BishopTest {
             new Move(coords, new Coordinates(0, 7)));
   }
 
-  @Disabled
   @Test
   public void bishopCanCaptureOpposingPiece() {
     // Arrange
@@ -69,7 +66,6 @@ public class BishopTest {
     assertThat(allowedMoves).contains(new Move(coords, opponentCoords));
   }
 
-  @Disabled
   @Test
   public void bishopCannotMoveThroughOpposingPiece() {
     // Arrange
@@ -89,7 +85,6 @@ public class BishopTest {
             new Move(coords, new Coordinates(1, 1)), new Move(coords, new Coordinates(0, 0)));
   }
 
-  @Disabled
   @Test
   public void bishopIsBlockedByFriendlyPiece() {
     // Arrange
