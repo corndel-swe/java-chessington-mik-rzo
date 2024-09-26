@@ -7,29 +7,10 @@ import com.corndel.chessington.model.PlayerColour;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Knight implements Piece {
-
-  private final Piece.PieceType type;
-  protected final PlayerColour colour;
+public class Knight extends AbstractPiece {
 
   public Knight(PlayerColour colour) {
-    this.type = PieceType.KNIGHT;
-    this.colour = colour;
-  }
-
-  @Override
-  public Piece.PieceType getType() {
-    return type;
-  }
-
-  @Override
-  public PlayerColour getColour() {
-    return colour;
-  }
-
-  @Override
-  public String toString() {
-    return colour.toString() + " " + type.toString();
+    super(PieceType.KNIGHT, colour);
   }
 
   @Override
