@@ -147,4 +147,19 @@ public class QueenTest {
             new Move(coords, new Coordinates(6, 6)),
             new Move(coords, new Coordinates(7, 7)));
   }
+
+  @Test
+  public void queenCannotMoveToOwnSquare() {
+    // Arrange
+    Coordinates coords = new Coordinates(3, 3);
+    board.placePiece(coords, queen);
+
+    // Act
+    List<Move> allowedMoves = queen.getAllowedMoves(coords, board);
+
+    // Assert
+    assertThat(allowedMoves)
+        .doesNotContain(
+            new Move(coords, new Coordinates(3, 3)));
+  }
 }
