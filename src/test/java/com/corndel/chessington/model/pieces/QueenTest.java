@@ -95,7 +95,7 @@ public class QueenTest {
     board.placePiece(coords, queen);
 
     Piece opponent = new Queen(PlayerColour.BLACK);
-    Coordinates opponentCoords = new Coordinates(3, 5);
+    Coordinates opponentCoords = new Coordinates(6, 7);
     board.placePiece(opponentCoords, opponent);
 
     // Act
@@ -108,11 +108,11 @@ public class QueenTest {
   @Test
   public void queenCannotPassThroughOpposingPieces() {
     // Arrange
-    Coordinates coords = new Coordinates(3, 4);
+    Coordinates coords = new Coordinates(3, 3);
     board.placePiece(coords, queen);
 
     Piece opponent = new Rook(PlayerColour.BLACK);
-    Coordinates opponentCoords = new Coordinates(3, 5);
+    Coordinates opponentCoords = new Coordinates(4, 4);
     board.placePiece(opponentCoords, opponent);
 
     // Act
@@ -121,17 +121,19 @@ public class QueenTest {
     // Assert
     assertThat(allowedMoves)
         .doesNotContain(
-            new Move(coords, new Coordinates(3, 6)), new Move(coords, new Coordinates(3, 7)));
+            new Move(coords, new Coordinates(5, 5)),
+            new Move(coords, new Coordinates(6, 6)),
+            new Move(coords, new Coordinates(7, 7)));
   }
 
   @Test
   public void queenIsBlockedByFriendlyPieces() {
     // Arrange
-    Coordinates coords = new Coordinates(3, 4);
+    Coordinates coords = new Coordinates(3, 3);
     board.placePiece(coords, queen);
 
     Piece friendlyPiece = new Rook(PlayerColour.WHITE);
-    Coordinates friendlyCoords = new Coordinates(3, 5);
+    Coordinates friendlyCoords = new Coordinates(4, 4);
     board.placePiece(friendlyCoords, friendlyPiece);
 
     // Act
@@ -140,8 +142,9 @@ public class QueenTest {
     // Assert
     assertThat(allowedMoves)
         .doesNotContain(
-            new Move(coords, new Coordinates(3, 5)),
-            new Move(coords, new Coordinates(3, 6)),
-            new Move(coords, new Coordinates(3, 7)));
+            new Move(coords, new Coordinates(4, 4)),
+            new Move(coords, new Coordinates(5, 5)),
+            new Move(coords, new Coordinates(6, 6)),
+            new Move(coords, new Coordinates(7, 7)));
   }
 }
