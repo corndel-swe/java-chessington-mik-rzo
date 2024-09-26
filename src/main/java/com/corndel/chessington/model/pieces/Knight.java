@@ -13,7 +13,6 @@ public class Knight extends AbstractPiece {
     super(PieceType.KNIGHT, colour);
   }
 
-  @Override
   public List<Move> getAllowedMoves(Coordinates from, Board board) {
     var allowedMoves = new ArrayList<Move>();
 

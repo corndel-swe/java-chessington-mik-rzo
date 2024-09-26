@@ -13,7 +13,6 @@ public class Rook extends AbstractPiece {
     super(PieceType.ROOK, colour);
   }
 
-  @Override
   public List<Move> getAllowedMoves(Coordinates from, Board board) {
     var allowedMoves = new ArrayList<Move>();
     // rook going left
