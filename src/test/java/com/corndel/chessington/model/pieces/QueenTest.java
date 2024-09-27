@@ -8,7 +8,6 @@ import com.corndel.chessington.model.Move;
 import com.corndel.chessington.model.PlayerColour;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class QueenTest {
@@ -21,7 +20,6 @@ public class QueenTest {
     board = Board.empty();
   }
 
-  @Disabled
   @Test
   public void queenCanMoveLaterally() {
     // Arrange
@@ -50,7 +48,6 @@ public class QueenTest {
             new Move(coords, new Coordinates(7, 4)));
   }
 
-  @Disabled
   @Test
   public void queenCanMoveDiagonally() {
     // Arrange
@@ -78,7 +75,6 @@ public class QueenTest {
             new Move(coords, new Coordinates(0, 7)));
   }
 
-  @Disabled
   @Test
   public void queenOnlyAllowsDiagonalAndLateralMoves() {
     // Arrange
@@ -92,7 +88,6 @@ public class QueenTest {
     assertThat(allowedMoves).hasSize(27);
   }
 
-  @Disabled
   @Test
   public void queenCanCaptureOpposingPieces() {
     // Arrange
@@ -100,7 +95,7 @@ public class QueenTest {
     board.placePiece(coords, queen);
 
     Piece opponent = new Queen(PlayerColour.BLACK);
-    Coordinates opponentCoords = new Coordinates(3, 5);
+    Coordinates opponentCoords = new Coordinates(6, 7);
     board.placePiece(opponentCoords, opponent);
 
     // Act
@@ -110,15 +105,14 @@ public class QueenTest {
     assertThat(allowedMoves).contains(new Move(coords, opponentCoords));
   }
 
-  @Disabled
   @Test
   public void queenCannotPassThroughOpposingPieces() {
     // Arrange
-    Coordinates coords = new Coordinates(3, 4);
+    Coordinates coords = new Coordinates(3, 3);
     board.placePiece(coords, queen);
 
     Piece opponent = new Rook(PlayerColour.BLACK);
-    Coordinates opponentCoords = new Coordinates(3, 5);
+    Coordinates opponentCoords = new Coordinates(4, 4);
     board.placePiece(opponentCoords, opponent);
 
     // Act
@@ -127,18 +121,19 @@ public class QueenTest {
     // Assert
     assertThat(allowedMoves)
         .doesNotContain(
-            new Move(coords, new Coordinates(3, 6)), new Move(coords, new Coordinates(3, 7)));
+            new Move(coords, new Coordinates(5, 5)),
+            new Move(coords, new Coordinates(6, 6)),
+            new Move(coords, new Coordinates(7, 7)));
   }
 
-  @Disabled
   @Test
   public void queenIsBlockedByFriendlyPieces() {
     // Arrange
-    Coordinates coords = new Coordinates(3, 4);
+    Coordinates coords = new Coordinates(3, 3);
     board.placePiece(coords, queen);
 
     Piece friendlyPiece = new Rook(PlayerColour.WHITE);
-    Coordinates friendlyCoords = new Coordinates(3, 5);
+    Coordinates friendlyCoords = new Coordinates(4, 4);
     board.placePiece(friendlyCoords, friendlyPiece);
 
     // Act
@@ -147,8 +142,24 @@ public class QueenTest {
     // Assert
     assertThat(allowedMoves)
         .doesNotContain(
-            new Move(coords, new Coordinates(3, 5)),
-            new Move(coords, new Coordinates(3, 6)),
-            new Move(coords, new Coordinates(3, 7)));
+            new Move(coords, new Coordinates(4, 4)),
+            new Move(coords, new Coordinates(5, 5)),
+            new Move(coords, new Coordinates(6, 6)),
+            new Move(coords, new Coordinates(7, 7)));
+  }
+
+  @Test
+  public void queenCannotMoveToOwnSquare() {
+    // Arrange
+    Coordinates coords = new Coordinates(3, 3);
+    board.placePiece(coords, queen);
+
+    // Act
+    List<Move> allowedMoves = queen.getAllowedMoves(coords, board);
+
+    // Assert
+    assertThat(allowedMoves)
+        .doesNotContain(
+            new Move(coords, new Coordinates(3, 3)));
   }
 }
